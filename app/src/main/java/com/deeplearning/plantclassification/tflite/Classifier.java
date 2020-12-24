@@ -40,7 +40,7 @@ public abstract class Classifier {
     }
 
     /** Number of results to show in the UI. */
-    private static final int MAX_RESULTS = 3;
+    private static final int MAX_RESULTS = 4;
 
     /** The loaded TensorFlow Lite model. */
     private MappedByteBuffer tfliteModel;
@@ -179,7 +179,7 @@ public abstract class Classifier {
 
         // Reads type and shape of input and output tensors, respectively.
         int imageTensorIndex = 0;
-        int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
+        int imageShape[] = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
         imageSizeY = imageShape[1];
         imageSizeX = imageShape[2];
         DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();

@@ -130,11 +130,7 @@ public abstract class CameraActivity extends AppCompatActivity
         new ViewTreeObserver.OnGlobalLayoutListener() {
           @Override
           public void onGlobalLayout() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-              gestureLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            } else {
-              gestureLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            }
+            gestureLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             //                int width = bottomSheetLayout.getMeasuredWidth();
             int height = gestureLayout.getMeasuredHeight();
 
@@ -143,7 +139,7 @@ public abstract class CameraActivity extends AppCompatActivity
         });
     sheetBehavior.setHideable(false);
 
-    sheetBehavior.setBottomSheetCallback(
+    sheetBehavior.addBottomSheetCallback(
         new BottomSheetBehavior.BottomSheetCallback() {
           @Override
           public void onStateChanged(@NonNull View bottomSheet, int newState) {
